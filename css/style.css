@@ -86,12 +86,14 @@ button {
 }
 
 .logo-img {
-  height: 40px;
+  height: 60px;
   width: auto;
 }
 
 .logo-text {
-  display: none;
+  display: block;
+  color: var(--text-dark);
+  font-size: 18px;
 }
 
 .nav {
@@ -480,8 +482,12 @@ button {
 
 /* Responsive */
 @media (max-width: 768px) {
+  .logo-img {
+    height: 50px;
+  }
+
   .logo-text {
-    display: block;
+    font-size: 16px;
   }
 
   .nav {
