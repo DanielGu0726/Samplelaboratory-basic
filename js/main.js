@@ -1,103 +1,95 @@
-// DentWide - Basic Plan Website JavaScript
-(function() {
+// DentWide 치과기공소 — Basic plan sample
+(function () {
   'use strict';
 
-  // Routes
-  const routes = {
-    '': 'home',
-    'home': 'home',
-    'about': 'about',
-    'gallery': 'gallery'
-  };
-
-  // DOM Elements
-  const mainContent = document.getElementById('main-content');
-  const navLinks = document.querySelectorAll('.nav-link');
-  const mobileToggle = document.getElementById('mobile-toggle');
-  const nav = document.getElementById('nav');
-
-  // Mobile Menu Toggle
-  mobileToggle.addEventListener('click', () => {
-    nav.classList.toggle('active');
-    mobileToggle.classList.toggle('active');
-  });
-
-  // Close mobile menu on link click
-  navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      nav.classList.remove('active');
-      mobileToggle.classList.remove('active');
+  /* Mobile navigation */
+  var menuBtn = document.querySelector('.menu-btn');
+  var nav = document.getElementById('site-nav');
+  if (menuBtn && nav) {
+    var label = menuBtn.querySelector('.sr');
+    var setOpen = function (open) {
+      menuBtn.setAttribute('aria-expanded', String(open));
+      nav.classList.toggle('is-open', open);
+      if (label) label.textContent = open ? '메뉴 닫기' : '메뉴 열기';
+    };
+    menuBtn.addEventListener('click', function () {
+      setOpen(menuBtn.getAttribute('aria-expanded') !== 'true');
     });
-  });
-
-  // Close mobile menu on outside click
-  document.addEventListener('click', (e) => {
-    if (!nav.contains(e.target) && !mobileToggle.contains(e.target)) {
-      nav.classList.remove('active');
-      mobileToggle.classList.remove('active');
-    }
-  });
-
-  // Load Page
-  async function loadPage(page) {
-    try {
-      mainContent.style.opacity = '0.5';
-
-      const response = await fetch(`pages/${page}.html`);
-      if (!response.ok) throw new Error('Page not found');
-
-      const html = await response.text();
-      mainContent.innerHTML = html;
-      mainContent.classList.add('fade-in');
-      mainContent.style.opacity = '1';
-
-      // Scroll to top
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-
-      // Update active nav link
-      updateActiveNav();
-
-    } catch (error) {
-      console.error('Error loading page:', error);
-      mainContent.innerHTML = '<div class="container section"><h1>페이지를 찾을 수 없습니다</h1></div>';
-      mainContent.style.opacity = '1';
-    }
-  }
-
-  // Update Active Navigation
-  function updateActiveNav() {
-    const hash = window.location.hash.slice(1) || 'home';
-
-    navLinks.forEach(link => {
-      const href = link.getAttribute('href').slice(1);
-      if (href === hash) {
-        link.classList.add('active');
-      } else {
-        link.classList.remove('active');
-      }
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && nav.classList.contains('is-open')) { setOpen(false); menuBtn.focus(); }
+    });
+    document.addEventListener('click', function (e) {
+      if (!nav.contains(e.target) && !menuBtn.contains(e.target)) setOpen(false);
     });
   }
 
-  // Handle Route
-  function handleRoute() {
-    const hash = window.location.hash.slice(1);
-    const page = routes[hash] || 'home';
-    loadPage(page);
+  /* Shade guide readout (home) */
+  var tabs = document.querySelectorAll('.guide .tab');
+  var codeEl = document.getElementById('readout-code');
+  var noteEl = document.getElementById('readout-note');
+  if (tabs.length && codeEl) {
+    var groups = { A: 'A 계열, 적갈색 기조', B: 'B 계열, 적황색 기조', C: 'C 계열, 회색 기조', D: 'D 계열, 적회색 기조' };
+    var current = document.querySelector('.guide .tab.is-active');
+    var show = function (tab) {
+      codeEl.textContent = tab.dataset.code;
+      noteEl.textContent = groups[tab.dataset.group];
+    };
+    var activate = function (tab) {
+      if (current) current.classList.remove('is-active');
+      current = tab;
+      tab.classList.add('is-active');
+      show(tab);
+    };
+    tabs.forEach(function (tab) {
+      tab.setAttribute('aria-label', '쉐이드 ' + tab.dataset.code + ', ' + groups[tab.dataset.group]);
+      tab.addEventListener('mouseenter', function () { activate(tab); });
+      tab.addEventListener('focus', function () { activate(tab); });
+      tab.addEventListener('click', function () { activate(tab); });
+    });
   }
 
-  // Smooth scroll for anchor links
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', (e) => {
-      const href = anchor.getAttribute('href');
-      if (href === '#' || href.startsWith('#home') || href.startsWith('#about') || href.startsWith('#gallery')) {
-        e.preventDefault();
-        const target = href.slice(1) || 'home';
-        window.location.hash = target;
-      }
+  /* Gallery filter + lightbox */
+  var sheet = document.getElementById('sheet');
+  if (sheet) {
+    var filters = document.querySelectorAll('.filter');
+    var cases = sheet.querySelectorAll('.case');
+    var count = document.getElementById('case-count');
+    filters.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var f = btn.dataset.filter, n = 0;
+        filters.forEach(function (b) { b.setAttribute('aria-pressed', String(b === btn)); });
+        cases.forEach(function (c) {
+          var on = f === 'all' || c.dataset.cat === f;
+          c.hidden = !on;
+          if (on) n++;
+        });
+        count.textContent = (f === 'all' ? '' : btn.textContent + ' ') + n + '건';
+      });
     });
-  });
 
-  // Initialize
-  window.addEventListener('hashchange', handleRoute);
-  window.addEventListener('load', handleRoute);
+    var lb = document.getElementById('lightbox');
+    var opener = null;
+    var $ = function (id) { return document.getElementById(id); };
+    sheet.addEventListener('click', function (e) {
+      var b = e.target.closest('.case-btn');
+      if (!b || !lb.showModal) return;
+      opener = b;
+      var d = b.dataset;
+      $('lb-field').style.setProperty('--shade', b.style.getPropertyValue('--shade'));
+      $('lb-tooth').textContent = d.tooth;
+      $('lb-code').textContent = d.code;
+      $('lb-use').setAttribute('href', '#sym-' + d.sym);
+      $('lb-title').textContent = b.querySelector('.case-title').textContent;
+      $('lb-d-tooth').textContent = d.tooth;
+      $('lb-d-cat').textContent = d.catLabel;
+      $('lb-d-mat').textContent = d.material;
+      $('lb-d-code').textContent = d.code;
+      $('lb-d-memo').textContent = d.memo;
+      lb.showModal();
+      $('lb-close').focus();
+    });
+    $('lb-close').addEventListener('click', function () { lb.close(); });
+    lb.addEventListener('click', function (e) { if (e.target === lb) lb.close(); });
+    lb.addEventListener('close', function () { if (opener) opener.focus(); });
+  }
 })();

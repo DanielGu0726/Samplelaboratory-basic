@@ -2,83 +2,184 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="DentWide 치과기공소 - 최고 품질의 치과 보철물 제작">
-  <meta name="keywords" content="DentWide, 치과기공소, 지르코니아, 크라운, 임플란트">
-
-  <!-- Open Graph -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DentWide 치과기공소 | 지르코니아·임플란트 보철 전문</title>
+  <meta name="description" content="지르코니아 크라운, 임플란트 보철, 브릿지, 라미네이트를 제작하는 DentWide 치과기공소입니다. 구강 스캔 파일 접수, 품목별 표준 납기와 리메이크 기준을 안내합니다.">
   <meta property="og:type" content="website">
   <meta property="og:title" content="DentWide 치과기공소">
-  <meta property="og:description" content="최고 품질의 치과 보철물 제작">
-
-  <title>DentWide 치과기공소</title>
-
+  <meta property="og:description" content="처방하신 그 색, 그대로. 지르코니아·임플란트 보철 전문 치과기공소">
+  <meta name="theme-color" content="#F7F8F7">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/variable/woff2/SUIT-Variable.css">
   <link rel="stylesheet" href="css/style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Header -->
-  <header class="header">
-    <div class="container">
-      <div class="header-content">
-        <a href="#home" class="logo">
-          <img src="images/Logo.png" alt="DentWide" class="logo-img">
-          <span class="logo-text">DentWide치과기공소</span>
-        </a>
+  <a class="skip" href="#main">본문 바로가기</a>
 
-        <nav class="nav" id="nav">
-          <a href="#home" class="nav-link active">홈</a>
-          <a href="#about" class="nav-link">기공소 소개</a>
-          <a href="#gallery" class="nav-link">갤러리</a>
-        </nav>
-
-        <button class="mobile-toggle" id="mobile-toggle" aria-label="메뉴">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-      </div>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a href="index.html" class="brand" aria-label="DentWide 치과기공소 홈">
+        <span class="brand-mark"><img src="images/logo-192.jpg" alt="" width="192" height="192" decoding="async"></span>
+        <span class="brand-name">DentWide <span>치과기공소</span></span>
+      </a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="menu-icon" aria-hidden="true"></span><span class="sr">메뉴 열기</span>
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="주 메뉴">
+        <ul>
+          <li><a href="index.html" aria-current="page">홈</a></li>
+          <li><a href="about.html">기공소 소개</a></li>
+          <li><a href="gallery.html">갤러리</a></li>
+        </ul>
+        <a class="nav-tel" href="tel:020000000">02-000-0000</a>
+      </nav>
     </div>
   </header>
 
-  <!-- Main Content -->
-  <main id="main-content" class="main-content">
-    <!-- 페이지 콘텐츠가 여기에 동적으로 로드됩니다 -->
-  </main>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-brand">
-          <img src="images/Logo.png" alt="DentWide" class="footer-logo">
-          <h3>DentWide 치과기공소</h3>
-          <p>최고 품질의 치과 보철물 제작</p>
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <h1 id="hero-title">처방하신 그 색,<br>그대로.</h1>
+          <p class="lead">지르코니아 크라운과 임플란트 보철을 전문으로 제작하는 치과기공소입니다. 구강 스캔 파일로 바로 의뢰하실 수 있습니다.</p>
+          <div class="actions">
+            <a class="btn btn-solid" href="#order">의뢰 방법 보기</a>
+            <a class="btn btn-line" href="gallery.html">제작 사례 보기</a>
+          </div>
         </div>
-
-        <div class="footer-info">
-          <h4>연락처</h4>
-          <p>서울시 강남구 테헤란로 123</p>
-          <p>Tel: 02-1234-5678</p>
-          <p>Email: info@dentwide.com</p>
-        </div>
-
-        <div class="footer-hours">
-          <h4>영업시간</h4>
-          <p>평일: 09:00 - 18:00</p>
-          <p>토요일: 09:00 - 13:00</p>
-          <p>일요일/공휴일: 휴무</p>
+        <div class="readout" aria-hidden="true">
+          <span class="readout-code" id="readout-code">A2</span>
+          <span class="readout-note" id="readout-note">A 계열, 적갈색 기조</span>
         </div>
       </div>
 
-      <div class="footer-bottom">
-        <p>&copy; 2024 DentWide 치과기공소. All rights reserved.</p>
+      <div class="wrap">
+        <div class="guide" role="group" aria-label="VITA 클래식 쉐이드 가이드 16색. 탭에 마우스를 올리거나 포커스하면 쉐이드 코드가 크게 표시됩니다.">
+          <div class="guide-rail" aria-hidden="true"></div>
+          <ul class="guide-tabs">
+            <li class="g-start"><button type="button" class="tab" style="--shade:#F0E5CB;--i:0" data-code="A1" data-group="A">A1</button></li>
+            <li><button type="button" class="tab is-active" style="--shade:#E9D6AE;--i:1" data-code="A2" data-group="A">A2</button></li>
+            <li><button type="button" class="tab" style="--shade:#E0C697;--i:2" data-code="A3" data-group="A">A3</button></li>
+            <li><button type="button" class="tab" style="--shade:#D5B582;--i:3" data-code="A3.5" data-group="A">A3.5</button></li>
+            <li><button type="button" class="tab" style="--shade:#C6A16E;--i:4" data-code="A4" data-group="A">A4</button></li>
+            <li class="g-start"><button type="button" class="tab" style="--shade:#F3EAD3;--i:5" data-code="B1" data-group="B">B1</button></li>
+            <li><button type="button" class="tab" style="--shade:#EBDBAE;--i:6" data-code="B2" data-group="B">B2</button></li>
+            <li><button type="button" class="tab" style="--shade:#DFC48A;--i:7" data-code="B3" data-group="B">B3</button></li>
+            <li><button type="button" class="tab" style="--shade:#D4B576;--i:8" data-code="B4" data-group="B">B4</button></li>
+            <li class="g-start"><button type="button" class="tab" style="--shade:#E2D9C3;--i:9" data-code="C1" data-group="C">C1</button></li>
+            <li><button type="button" class="tab" style="--shade:#D3C6A6;--i:10" data-code="C2" data-group="C">C2</button></li>
+            <li><button type="button" class="tab" style="--shade:#C4B593;--i:11" data-code="C3" data-group="C">C3</button></li>
+            <li><button type="button" class="tab" style="--shade:#AE9C7B;--i:12" data-code="C4" data-group="C">C4</button></li>
+            <li class="g-start"><button type="button" class="tab" style="--shade:#E3D6BC;--i:13" data-code="D2" data-group="D">D2</button></li>
+            <li><button type="button" class="tab" style="--shade:#D6C6A3;--i:14" data-code="D3" data-group="D">D3</button></li>
+            <li><button type="button" class="tab" style="--shade:#CAB791;--i:15" data-code="D4" data-group="D">D4</button></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="band" aria-labelledby="why-title">
+      <div class="wrap split">
+        <div class="split-head">
+          <h2 id="why-title">기공소를 정하실 때<br>먼저 보시는 네 가지</h2>
+          <p class="muted">거래를 시작하기 전에 원장님들이 가장 많이 물어보시는 항목입니다.</p>
+        </div>
+        <dl class="points">
+          <div>
+            <dt>정밀도</dt>
+            <dd>모든 크라운은 디지털 모형에서 마진 적합과 교합 접촉을 확인한 뒤 출고합니다. 확인 화면은 요청하시면 함께 보내 드립니다.</dd>
+          </div>
+          <div>
+            <dt>납기</dt>
+            <dd>품목별 표준 납기를 아래에 공개합니다. 지연이 예상되면 접수 당일 미리 연락드립니다.</dd>
+          </div>
+          <div>
+            <dt>소통</dt>
+            <dd>치과마다 담당 기공사가 정해져 있습니다. 쉐이드나 디자인 문의는 담당자와 바로 통화하실 수 있습니다.</dd>
+          </div>
+          <div>
+            <dt>리메이크</dt>
+            <dd>출고 후 30일 이내 적합 불량은 무상으로 다시 제작합니다. 사진이나 스캔 파일을 보내 주시면 원인부터 함께 확인합니다.</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="band" aria-labelledby="items-title">
+      <div class="wrap split">
+        <div class="split-head">
+          <h2 id="items-title">제작 품목과<br>표준 납기</h2>
+          <p class="muted">납기는 파일 접수 다음 날부터 세는 영업일 기준입니다.</p>
+        </div>
+        <div class="table-wrap">
+          <table class="items">
+            <thead>
+              <tr><th scope="col">품목</th><th scope="col">구성</th><th scope="col">표준 납기</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">지르코니아 크라운</th><td>풀 지르코니아, 레이어드 지르코니아</td><td>3일</td></tr>
+              <tr><th scope="row">임플란트 보철</th><td>커스텀 어버트먼트, 스크류 리테인 크라운</td><td>5일</td></tr>
+              <tr><th scope="row">지르코니아 브릿지</th><td>3유닛부터 6유닛까지</td><td>5일</td></tr>
+              <tr><th scope="row">라미네이트</th><td>e.max 프레스, 피드스패틱 포세린</td><td>5일</td></tr>
+            </tbody>
+          </table>
+          <p class="note">급한 케이스는 처방서에 적어 주세요. 가능 여부를 당일 회신드립니다.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="band" id="order" aria-labelledby="order-title">
+      <div class="wrap split">
+        <div class="split-head">
+          <h2 id="order-title">스캔 파일로<br>의뢰하는 방법</h2>
+          <p class="muted">인상체로 보내실 때는 전화 주시면 수거 기사가 방문합니다.</p>
+        </div>
+        <ol class="steps">
+          <li>
+            <h3>파일 보내기</h3>
+            <p>3Shape Communicate, Medit Link 또는 이메일로 STL·PLY 파일을 보내 주세요. 처방서에는 치식, 쉐이드, 마진 위치를 적어 주시면 됩니다.</p>
+          </li>
+          <li>
+            <h3>디자인 확인</h3>
+            <p>요청하신 케이스는 디자인 캡처를 먼저 보내 드리고, 승인을 받은 뒤 밀링합니다.</p>
+          </li>
+          <li>
+            <h3>출고</h3>
+            <p>퀵 또는 택배로 출고하며, 출고 당일 문자로 알려 드립니다.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="band contact" aria-labelledby="contact-title">
+      <div class="wrap split">
+        <div class="split-head">
+          <h2 id="contact-title">거래 문의</h2>
+          <p class="muted">첫 케이스 전에 처방서 양식과 파일 전송 계정을 안내해 드립니다.</p>
+        </div>
+        <dl class="contact-list">
+          <div><dt>전화</dt><dd><a href="tel:020000000">02-000-0000</a></dd></div>
+          <div><dt>이메일</dt><dd><a href="mailto:lab@dentwide-lab.kr">lab@dentwide-lab.kr</a></dd></div>
+          <div><dt>주소</dt><dd>서울 OO구 OO로 00, 0층</dd></div>
+          <div><dt>운영 시간</dt><dd>평일 09:00–18:30<br>토요일 09:00–13:00<br>일요일, 공휴일 휴무</dd></div>
+        </dl>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <div>
+        <p class="footer-name">DentWide 치과기공소</p>
+        <p>서울 OO구 OO로 00, 0층<br><a href="tel:020000000">02-000-0000</a> <span class="sep" aria-hidden="true">/</span> <a href="mailto:lab@dentwide-lab.kr">lab@dentwide-lab.kr</a></p>
+      </div>
+      <div class="footer-meta">
+        <p>본 사이트는 치과의료기관 대상 안내 페이지입니다.</p>
+        <p>© DentWide 치과기공소</p>
       </div>
     </div>
   </footer>
 
-  <script src="js/main.js"></script>
+  <script src="js/main.js" defer></script>
 </body>
 </html>
